@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>get</title>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+ </head>
+ <body>
+   <div class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="adopt.html">Adoptions</a>
+    <a href="info.html">Info</a>
+    <a class="active" href="get.html">Get!</a>
+    <a href="links.html">Links</a>
+  </div>
+  <br>
+  <div class="center">
+  <button class="bunnyButton" id="getBunny"> Click for a new bunny </button>
+  </div>
+  <br>
+  <div class = "center">
+  <video autoplay loop id="bunSource" muted>
+  </video>
+  </div>
+  <div id = "bunSourceURL" class = "urlSource"></div>
+  <script>
+    document.getElementById('getBunny').addEventListener('click', function(event){
+    var req = new XMLHttpRequest();
+    req.open('GET', 'https://api.bunnies.io/v2/loop/random/?media=webm,mp4', true);
+    req.addEventListener('load',function(){
+      if(req.status >= 200 && req.status < 400){
+        var response = JSON.parse(req.responseText);
+        document.getElementById('bunSource').src = response.media.mp4;
+        document.getElementById('bunSourceURL').textContent = "URL Source: "+ response.media.mp4;
+      } else {
+        console.log("Error in network request: " + req.statusText);
+      }});
+    req.send();
+    event.preventDefault();
+  });
+  document.getElementById("getBunny").click();
+  </script>
+ </body>
+</html>

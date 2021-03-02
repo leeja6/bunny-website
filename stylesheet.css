@@ -1,0 +1,126 @@
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: center
+}
+
+.bunnyButton {
+  border: 1px solid black;
+  border-color: #e7e7e7;
+  color: black;
+  padding:8px 8px;
+  background-color: WhiteSmoke
+}
+
+.urlSource {
+  font-family: Helvetica;
+  font-size: 7px;
+  text-align: right;
+  font-weight: lighter;
+}
+
+object {
+  border:1px solid #CCC;
+  border-width:1px;
+  margin-bottom:5px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+video {
+  width: 100%;
+  height: auto;
+}
+
+#getBunny:hover {
+  background: #e7e7e7;
+}
+
+.normal {
+  font-family: Helvetica;
+  font-size: 12px;
+  text-decoration: none;
+  color: black
+}
+
+button {
+  border:none;
+  display:inline-block;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap;
+  font-family: Helvetica;
+  font-size: 12px;
+}
+
+.nav-bar {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.nav-bar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-family: Helvetica;
+  font-size: 12px;
+}
+
+/* Change the color of links on hover */
+.nav-bar a:hover {
+  background-color: LightGray;
+  color: black;
+}
+
+.scroll-box {
+  width: 80%;
+  height:300px;
+  line-height:1em;
+  overflow:scroll;
+  padding:3px;
+  background-color:WhiteSmoke;
+  color:black;
+  scrollbar-base-color:#DEBB07
+  font-family: Helvetica;
+  font-size: 12px;
+  text-decoration: none;
+  color: black
+}
+
+/* Add a color to the active/current link */
+.nav-bar a.active {
+  background-color: DarkGray;
+  color: white;
+}
+
+h2 {
+  font-family: Helvetica;
+  font-size: 14px;
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+dt {
+  font-family: Helvetica;
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  color: black
+}
+
+dd {
+  font-family: Helvetica;
+  font-size: 12px;
+  text-decoration: none;
+  margin-bottom: 13px;
+}

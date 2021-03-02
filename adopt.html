@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>adopt</title>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+ </head>
+ <body>
+   <div class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="adopt.html" class = "active">Adoptions</a>
+    <a href="info.html">Info</a>
+    <a href="get.html">Get!</a>
+    <a class="active">Links</a>
+  </div>
+ </body>
+<br>
+<h2> Petfinder Search - Find a Bunny to Adopt </h2>
+<form>
+  <label class="normal" for="zip">Zip code:</label><br>
+  <input class="normal" type="text" id="zip" name="zip"><br>
+  <label class="normal" for "sort">Sort results by</label>
+  <select class="normal" id="sort" name="sort">
+    <option value="recent">recent</option>
+    <option value="distance">distance</option>
+    <option value="random">random</option>
+  </select>
+  <br><br>
+  <input type = "submit" id="getToken" value="Find Pets!" class="bunnyButton">
+</form>
+<br>
+ <div id = "adopt_response" class = "normal scroll-box"> </div>
+ <script>
+   document.getElementById('getToken').addEventListener('click', function(event){
+   var req = new XMLHttpRequest();
+   var payload = {
+     "grant_type": "client_credentials",
+     "client_id": "6oyyZgxaav1UFqpGw74INaM0lSGRNnlGbICZxNrrAt6BtNJ3VB",
+     "client_secret": "2v9Ye15Ge2I9kkpMC9LSERgPVHmdHMWnS6i11TXf"
+   }
+   req.open('POST', 'https://api.petfinder.com/v2/oauth2/token', true);
+   req.setRequestHeader('Content-Type', 'application/json');
+   req.addEventListener('load',function(){
+     if(req.status >= 200 && req.status < 400){
+       var response = JSON.parse(req.responseText);
+       console.log(response.access_token)
+       getPets("Bearer "+response.access_token);
+     } else {
+       console.log("Error in network request: " + req.statusText);
+     }});
+   req.send(JSON.stringify(payload));
+   event.preventDefault();
+ });
+ function getPets(myAccessToken){
+   var req = new XMLHttpRequest();
+   var zip = document.getElementById('zip').value
+   var sort = document.getElementById('sort').value
+   var request_string = "type=Rabbit&location="+zip+"&sort="+sort
+   req.open('GET','https://api.petfinder.com/v2/animals?'+request_string, true);
+   req.setRequestHeader('Authorization',myAccessToken)
+   req.addEventListener('load',function(){
+     if(req.status >= 200 && req.status < 400){
+       document.getElementById('adopt_response').textContent = ""
+       var response = JSON.parse(req.responseText);
+       var responseLength = response['animals'].length
+       for (var i = 0; i < responseLength; i++ ) {
+         var newBunny = document.createElement("div");
+         newBunny.textContent = "Name: "+response['animals'][i]["name"];
+         document.getElementById('adopt_response').appendChild(newBunny)
+         var newList = document.createElement("ul")
+         var newGender = document.createElement("li");
+         newGender.textContent = "Gender: "+response['animals'][i]["gender"];
+         newList.appendChild(newGender)
+         var newLocation = document.createElement("li");
+         newLocation.textContent = "Location: "+response['animals'][i]["contact"]["address"]["city"]+", "+response['animals'][i]["contact"]["address"]["state"];
+         newList.appendChild(newLocation)
+         var newBreed = document.createElement("li");
+         newBreed.textContent = "Breed: "+response['animals'][i]["breeds"]["primary"];
+         newList.appendChild(newBreed)
+         var newAge = document.createElement("li");
+         newAge.textContent = "Age: "+response['animals'][i]["age"];
+         newList.appendChild(newAge)
+         var newContact = document.createElement("li");
+         newContact.textContent = "Contact: "+(response['animals'][i]["contact"]["email"]||response['animals'][i]["contact"]["phone"]);
+         newList.appendChild(newContact)
+         document.getElementById('adopt_response').appendChild(newList)
+       }
+     } else {
+       console.log("Error in network request: " + req.statusText);
+       document.getElementById('adopt_response').textContent = "There has been an error. Please check if a valid 5-digit zip has been entered."
+     }});
+   req.send();
+   event.preventDefault();
+ }
+ </script>
+</html>

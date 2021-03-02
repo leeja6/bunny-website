@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>home</title>
+  <link rel="stylesheet" href="stylesheet.css" type="text/css">
+ </head>
+ <body>
+   <div class="nav-bar">
+    <a class="active" href="index.html">Home</a>
+    <a href="adopt.html">Adoptions</a>
+    <a href="info.html">Info</a>
+    <a href="get.html">Get!</a>
+    <a href="links.html">Links</a>
+  </div>
+  <br>
+   <center>
+   <div class="center urlSource">
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun1.jpg">
+     <div class = "urlSource">URL Source: https://medium.com/the-bunny-lowdown/the-ultimate-baby-rabbit-guide-d3d4e194eff8</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun2.jpg">
+     <div class = "urlSource">URL Source: https://i.pinimg.com/originals/0f/b8/c3/0fb8c3b6e42bd338b7d4312c46db7584.jpg</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun3.jpg">
+     <div class = "urlSource">URL Source: https://patch.com/img/cdn/users/22791208/2016/01/raw/201601568d448898be4.jpg</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun4.jpg">
+     <div class = "urlSource">URL Source: https://pic2.me/wallpaper/54966.html</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun5.jpg">
+     <div class = "urlSource">URL Source: https://thebabyrabbit.com/how-to-take-care-of-a-newly-born-rabbit/</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun6.jpg">
+     <div class = "urlSource">URL Source: https://rabbit.org/adoption/bunny.jpg</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun7.jpg">
+     <div class = "urlSource">URL Source: https://www.youtube.com/watch?v=n0B5Ot69FPU</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun8.jpg">
+     <div class = "urlSource">URL Source: http://www.clinicaveterinariaexotics.com/index.php/especies/conejos</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun9.jpg">
+     <div class = "urlSource">URL Source: http://www.ccvcri.com/wildlife-information.html</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun10.jpg">
+     <div class = "urlSource">URL Source: https://www.pilotonline.com/life/wildlife-nature/article_aac860ff-70f8-54b2-b827-dcad627ef33d.html</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun11.jpg">
+     <div class = "urlSource">URL Source: https://petlifebuzz.com/what-do-baby-rabbits-eat/</div>
+     </div>
+   <div class = "slide-container urlSource"><img class="mySlides" src="images/bun12.jpg">
+     <div class = "urlSource">URL Source: https://i.redd.it/xgdtur8oyrm21.jpg</div>
+     </div>
+   </div>
+   <br>
+   <div class="center">
+     <button class="bunnyButton" onclick="plusDivs(-1)"> Prev</button>
+     <button class="bunnyButton" onclick="plusDivs(1)">Next </button>
+   </div>
+   </center>
+<script>
+  var slideIndex = 1;
+  showDivs(slideIndex);
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("slide-container");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    x[slideIndex-1].style.display = "block";
+  }
+
+  var slideIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("slide-container");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > x.length) {slideIndex = 1}
+  x[slideIndex-1].style.display = "block";
+  setTimeout(carousel, 2000);
+}
+</script>
+</body>
+</html>
